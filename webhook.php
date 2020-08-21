@@ -26,7 +26,7 @@ $data = json_decode($json);
 
 
 $logFile = fopen("log-mp.txt", 'a') or die("Error creando archivo");
-fwrite($logFile, $data);
+fwrite($logFile, $_POST["type"]);
 fclose($logFile);
 
 
