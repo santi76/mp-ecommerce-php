@@ -1,17 +1,23 @@
 <!DOCTYPE html>
+
 <?php
-    //var_dump($_POST);
+
     require_once 'vendor/autoload.php'; // You have to require the library from your Composer vendor folder
 
     MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398"); // Either
     MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+
+
     // Crea un objeto de preferencia
     $preference = new MercadoPago\Preference();
 
+
     $preference->payment_methods = array(
         "excluded_payment_methods" => array(
-          array("id" => "amex"),
-          array("id" => "redlink")
+          array("id" => "amex")
+        ),
+        "excluded_payment_types" => array(
+          array("id" => "atm")
         ),
         "installments" => 6
     );
@@ -21,24 +27,25 @@
     $payer->surname = "Landa";
     $payer->email = "test_user_63274575@testuser.com";
     $payer->phone = array(
-        "area_code" => "11",
-        "number" => "22223333"
-    );
-    $payer->address = array(
-        "street_name" => "false",
-        "street_number" => 123,
-        "zip_code" => 1111
-    );
+        "area_code" => 11,
+        "number" => 22223333
+      );
+      $payer->address = array(
+        "street_name" => "False",
+        "street_number" => "123",
+        "zip_code" => "1111"
+      );
 
     // Crea un ítem en la preferencia
     $item = new MercadoPago\Item();
     $item->id = 1234;
     $item->title = $_POST['title'];
-    $item->description = "Dispositivo móvil de Tiendae-commerce";
+    $item->description = "Dispositivo móvil de Tienda e-commerce";
     $item->picture_url = "https://santi76-mp-commerce-php.herokuapp.com".$_POST['img'];
     $item->quantity = $_POST['unit'];
     $item->unit_price = $_POST['price'];
     $preference->items = array($item);
+
     $preference->external_reference = "santisayago@gmail.com";
 
     $preference->back_urls = array(
@@ -46,9 +53,9 @@
         "failure" => "https://santi76-mp-commerce-php.herokuapp.com/error.php",
         "pending" => "https://santi76-mp-commerce-php.herokuapp.com/pendiente.php"
     );
-    $preference->auto_return = "all";
+    $preference->auto_return = "approved";
     $preference->notification_url = "https://santi76-mp-commerce-php.herokuapp.com/webhook.php";
-
+    $preference->payer = $payer;
     $preference->save();
 
 ?>
