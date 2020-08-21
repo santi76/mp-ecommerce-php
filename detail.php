@@ -183,12 +183,11 @@
                                             <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                     </div>
-                                    <form action="/procesar-pago" method="POST">
-                                     <script data-button-label="Pagar la compra"
-                                      src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                      data-preference-id="<?php echo $preference->id; ?>">
-                                     </script>
-                                   </form>
+                                    <a href="<?php echo $preference->init_point; ?>">Pagar con Mercado Pago</a>
+                                   <!--  <form action="<?php echo $preference->init_point; ?>" method="POST">
+                                    <script data-button-label="Pagar la compra"src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>">
+                                    </script>
+                                   </form> -->
                                 </div>
                             </div>
                         </div>
