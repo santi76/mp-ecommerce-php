@@ -2,9 +2,9 @@
 
 $json = file_get_contents('php://input');
 // Converts it into a PHP object
-$data = json_decode($json);
+
 $logFile = fopen("log-mp-json.txt", 'a') or die("Error creando archivo");
-fwrite($logFile, print_r($payment, true));
+fwrite($logFile, print_r($json, true));
 fclose($logFile);
 
 require_once 'vendor/autoload.php';
