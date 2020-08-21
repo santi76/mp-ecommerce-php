@@ -42,9 +42,9 @@
     $preference->external_reference = "santisayago@gmail.com";
 
     $preference->back_urls = array(
-        "success" => "aceptado.php",
-        "failure" => "error.php",
-        "pending" => "pendiente.php"
+        "success" => "https://santi76-mp-commerce-php.herokuapp.com/aceptado.php",
+        "failure" => "https://santi76-mp-commerce-php.herokuapp.com/error.php",
+        "pending" => "https://santi76-mp-commerce-php.herokuapp.com/pendiente.php"
     );
     $preference->auto_return = "all";
     $preference->notification_url = "https://santi76-mp-commerce-php.herokuapp.com/webhook.php";
